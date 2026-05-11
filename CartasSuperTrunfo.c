@@ -53,8 +53,8 @@ scanf("%d", &pontos1);
 
 float Densidade1 = (float) populacao1 / area1; // Cálculo da densidade populacional para a carta 1
 float PIB_per_capita1 = (float) pib1 / populacao1; // Cálculo do PIB per capita para a carta 1
-float inverso_densidade1 = 0.1f / Densidade1; // Cálculo do inverso da densidade populacional para a carta 1
-float poder1 = (float) populacao1 + area1 + pib1 + (float) pontos1 + inverso_densidade1; // Cálculo do poder da carta 1
+inverso_densidade1 = 1.0f / Densidade1; // Cálculo do inverso da densidade populacional para a carta 1
+poder1 = (float) populacao1 + area1 + pib1 + (float) pontos1 + inverso_densidade1; // Cálculo do poder da carta 1
 
 // === ENTRADA CARTA 2 ===
 printf("\n== Cadastro Carta 2 ==\n");
@@ -82,8 +82,8 @@ scanf("%d", &pontos2);
 
 float Densidade2 = (float) populacao2 / area2; // Cálculo da densidade populacional para a carta 2
 float PIB_per_capita2 = (float) pib2 / populacao2; // Cálculo do PIB per capita para a carta 2
-float inverso_densidade2 = 0.1f / Densidade2; // Cálculo do inverso da densidade populacional para a carta 2
-float poder2 = (float) populacao2 + area2 + pib2 + (float) pontos2 + inverso_densidade2; // Cálculo do poder da carta 2
+inverso_densidade2 = 1.0f / Densidade2; // Cálculo do inverso da densidade populacional para a carta 2
+poder2 = (float) populacao2 + area2 + pib2 + (float) pontos2 + inverso_densidade2; // Cálculo do poder da carta 2
 
   // Área para exibição dos dados da cidade
 printf("\n\n=== CARTAS CADASTRADAS ===\n");
@@ -110,16 +110,20 @@ printf("Densidade Populacional: %.2f\n", Densidade2);
 printf("PIB per Capita: %.2f\n", PIB_per_capita2);
 printf("Poder da Carta: %.2f\n", poder2);
 
-// Comparação entre as cartas
-printf("\n\n=== COMPARACAO ENTRE AS CARTAS ===\n");
+// === COMPARAÇÕES ATRIBUTO POR ATRIBUTO ===
+  printf("\n\n=== COMPARACAO ENTRE AS CARTAS ===\n");
 
-if (poder1 > poder2) {
-    printf ("Carta 1 é mais poderosa que Carta 2.\n");
-} else if (poder2 > poder1) {
-    printf ("Carta 2 é mais poderosa que Carta 1.\n");    
-} else {
-    printf ("Carta 1 e Carta 2 têm o mesmo poder.\n");
-}
+  // Maior vence (1 = Carta 1 vence, 0 = Carta 2 vence)
+  printf("Populacao: %d\n",          populacao1 > populacao2);
+  printf("Area: %d\n",               area1 > area2);
+  printf("PIB: %d\n",                pib1 > pib2);
+  printf("Pontos Turisticos: %d\n",  pontos1 > pontos2);
+  printf("PIB per Capita: %d\n",     PIB_per_capita1 > PIB_per_capita2);
+
+  // Densidade: menor vence, então Carta 1 vence se densidade1 < densidade2
+  printf("Densidade Populacional: %d\n", Densidade1 < Densidade2);
+
+  printf("Super Poder: %d\n",        poder1 > poder2);
 
 return 0;
 } 
